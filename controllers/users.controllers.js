@@ -4,10 +4,13 @@ const users = require("../public/users.json");
 
 module.exports.get_all_user = (req, res) => {
   const limit = req.query.limit;
-  if (limit) {
+  if (limit && limit <= users.length) {
     res.send(users.slice(0, Number(limit)));
   } else {
-    res.send(users);
+    res.status(400).send({
+      message: `You enter the larger limit. Please set limit 0-${users.length}`,
+      data: users,
+    });
   }
 };
 

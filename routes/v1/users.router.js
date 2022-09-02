@@ -10,7 +10,6 @@ const users = require("../../controllers/users.controllers");
 
 router
   .route("/random")
-
   /**
    * @api {get}   Random user
    * @api_description   Get a single random api
@@ -21,7 +20,6 @@ router
    * @api_success {object[]} {status:200} {success:true}    a single user array of object;
    * @api_error {Server internal error}
    * */
-
   .get(users.get_random_user);
 
 router
