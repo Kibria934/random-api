@@ -4,7 +4,6 @@ const users = require("../public/users.json");
 
 module.exports.get_all_user = (req, res) => {
   const limit = req.query.limit;
-  console.log(limit);
   if (limit) {
     res.send(users.slice(0, Number(limit)));
   } else {
@@ -26,13 +25,13 @@ module.exports.save_a_user = (req, res) => {
   const new_data = req.body;
   if (new_data) {
     users.push(new_data);
-    res
-      .status(200)
-      .send({ success: true, message: "successfully saved the data" });
+    res.status(200).send({
+      success: true,
+      message: "successfully saved the data",
+      data: users,
+    });
   } else {
-    res
-      .status(404)
-      .send({ success: false, message: "You did not enter the right data" });
+    res.status(400).send({ success: false, message: "Invalid data" });
   }
 };
 
